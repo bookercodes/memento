@@ -1,0 +1,18 @@
+{
+  "name": "password-reboot",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alexbooker/password-reboot"
+  },
+  "author": "ALex Booker <alexbooker@fastmail.im>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alexbooker/password-reboot/issues"
+  }
+}
