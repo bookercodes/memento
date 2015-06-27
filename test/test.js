@@ -29,13 +29,27 @@ describe("PasswordReboot", function() {
       actual.should.equal(true);
     });
 
-    it("should fail if username has changed", function() {
+    it("should fail if username changes", function() {
       var sut = new PasswordReboot("t9m0HLkdEyWQ6XN");
       var user = {
         username: "eve@hotmail.com"
       };
       var token = sut.createToken(user);
       user.username = "bob@hotmail.com";
+
+      var actual = sut.verifyToken(user, token);
+
+      actual.should.equal(false);
+    });
+
+    it("should fail if any user property changes", function() {
+      var sut = new PasswordReboot("t9m0HLkdEyWQ6XN");
+      var user = {
+        username: "eve@hotmail.com",
+        salt: "23423412341233"
+      };
+      var token = sut.createToken(user);
+      user.salt = "8888888";
 
       var actual = sut.verifyToken(user, token);
 
