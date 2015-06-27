@@ -103,9 +103,9 @@ describe("PasswordReboot", function() {
       var user = {
         username: "bob@hotmail.com"
       };
-      var minutesUntilExpiration = 10;
-      var token = sut.createToken(user, minutesUntilExpiration);
-      var clock = sinon.useFakeTimers(moment().add({ minutes: minutesUntilExpiration }).valueOf());
+      var MINUTES_UNTIL_EXPIRATION = 10;
+      var token = sut.createToken(user, MINUTES_UNTIL_EXPIRATION);
+      var clock = sinon.useFakeTimers(moment().add({ minutes: MINUTES_UNTIL_EXPIRATION }).valueOf());
 
       var actual = sut.verifyToken(user, token);
 
@@ -120,8 +120,8 @@ describe("PasswordReboot", function() {
       var user = {
         username: "bob@hotmail.com"
       };
-      var minutesUntilExpiration = 10;
-      var token = sut.createToken(user, minutesUntilExpiration);
+      var MINUTES_UNTIL_EXPIRATION = 10;
+      var token = sut.createToken(user, MINUTES_UNTIL_EXPIRATION);
 
       var actual = sut.verifyToken(user, token);
 
