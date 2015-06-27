@@ -37,7 +37,7 @@ describe("PasswordReboot", function() {
       var token = sut.createToken(user);
       user.username = "bob@hotmail.com";
 
-      var actual = sut.verifyToken(user, user);
+      var actual = sut.verifyToken(user, token);
 
       actual.should.equal(false);
     });
