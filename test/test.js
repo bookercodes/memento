@@ -104,13 +104,41 @@ describe("PasswordReboot", function() {
         username: "bob@hotmail.com"
       };
       var token = sut.createToken(user);
-      var clock = sinon.useFakeTimers(moment().add({ minutes: 5 }).valueOf());
 
       var actual = sut.verifyToken(user, token);
 
       actual.should.equal(true);
+    });
+
+
+    it("should fail if token has expired custom minutes until expiration", function() {
+      var sut = new PasswordReboot("t9m0HLkdEyWQ6XN");
+      var user = {
+        username: "bob@hotmail.com"
+      };
+      var minutesUntilExpiration = 10;
+      var token = sut.createToken(user, minutesUntilExpiration);
+      var clock = sinon.useFakeTimers(moment().add({ minutes: minutesUntilExpiration }).valueOf());
+
+      var actual = sut.verifyToken(user, token);
+
+      actual.should.equal(false);
 
       clock.reset();
+    });
+
+
+    it("should succeed if token has not expired custom minutes until expiration", function() {
+      var sut = new PasswordReboot("t9m0HLkdEyWQ6XN");
+      var user = {
+        username: "bob@hotmail.com"
+      };
+      var minutesUntilExpiration = 10;
+      var token = sut.createToken(user, minutesUntilExpiration);
+
+      var actual = sut.verifyToken(user, token);
+
+      actual.should.equal(true);
     });
 
   });
