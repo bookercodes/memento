@@ -16,7 +16,8 @@
     "url": "https://github.com/alexbooker/password-reboot/issues"
   },
   "devDependencies": {
-    "chai": "^3.0.0"
+    "chai": "^3.0.0",
+    "sinon": "^1.15.4"
   },
   "dependencies": {
     "moment": "^2.10.3"

@@ -1,4 +1,7 @@
 var should = require('chai').should();
+var sinon = require("sinon");
+var moment = require("moment");
+
 var PasswordReboot = require("../lib/index");
 
 describe("PasswordReboot", function() {
@@ -79,6 +82,37 @@ describe("PasswordReboot", function() {
 
       actual.should.equal(false);
     });
+
+    it("should fail if token has expired", function() {
+      var sut = new PasswordReboot("t9m0HLkdEyWQ6XN");
+      var user = {
+        username: "bob@hotmail.com"
+      };
+      var token = sut.createToken(user);
+      var clock = sinon.useFakeTimers(moment().add({ minutes: 20 }).valueOf());
+
+      var actual = sut.verifyToken(user, token);
+
+      actual.should.equal(false);
+
+      clock.reset();
+    });
+
+    it("should succeed if token has not expired", function() {
+      var sut = new PasswordReboot("t9m0HLkdEyWQ6XN");
+      var user = {
+        username: "bob@hotmail.com"
+      };
+      var token = sut.createToken(user);
+      var clock = sinon.useFakeTimers(moment().add({ minutes: 5 }).valueOf());
+
+      var actual = sut.verifyToken(user, token);
+
+      actual.should.equal(true);
+
+      clock.reset();
+    });
+
   });
 
 });
