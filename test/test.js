@@ -98,19 +98,6 @@ describe("PasswordReboot", function() {
       clock.reset();
     });
 
-    it("should succeed if token has not expired", function() {
-      var sut = new PasswordReboot("t9m0HLkdEyWQ6XN");
-      var user = {
-        username: "bob@hotmail.com"
-      };
-      var token = sut.createToken(user);
-
-      var actual = sut.verifyToken(user, token);
-
-      actual.should.equal(true);
-    });
-
-
     it("should fail if token has expired custom minutes until expiration", function() {
       var sut = new PasswordReboot("t9m0HLkdEyWQ6XN");
       var user = {
