@@ -9,11 +9,13 @@ describe("PasswordReboot", function() {
   describe("createToken", function() {
     it("should return a token", function() {
       var sut = new PasswordReboot("t9m0HLkdEyWQ6XN");
+      sut.DELIMITER = "cheese";
       var user = {
         username: "bob@hotmail.com"
       };
 
       var actual = sut.createToken(user);
+      console.log(actual);
 
       should.exist(actual);
     });
@@ -134,10 +136,10 @@ describe("PasswordReboot", function() {
         username: "bob@hotmail.com"
       };
       var token = sut.createToken(user);
-      var parts = token.split(":");
+      var parts = token.split(sut._DELIMITER);
       var hmac = parts[1];
       var expirationTime = Number.MAX_VALUE;
-      token = expirationTime + ":" + hmac;
+      token = expirationTime + sut._DELIMITER + hmac;
 
       var actual = sut.verifyToken(user, token);
 
