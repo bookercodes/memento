@@ -128,6 +128,23 @@ describe("PasswordReboot", function() {
       actual.should.equal(true);
     });
 
+    it("should fail if expiration timestamp has been tampered with", function() {
+      var sut = new PasswordReboot("t9m0HLkdEyWQ6XN");
+      var user = {
+        username: "bob@hotmail.com"
+      };
+      var token = sut.createToken(user);
+      var parts = token.split(":");
+      var hmac = parts[1];
+      var expirationTime = Number.MAX_VALUE;
+      token = expirationTime + ":" + hmac;
+
+      var actual = sut.verifyToken(user, token);
+
+      actual.should.equal(false);
+    });
+
+
   });
 
 });
