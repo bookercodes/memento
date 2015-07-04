@@ -1,6 +1,6 @@
 {
-  "name": "password-reboot",
-  "version": "1.2.0",
+  "name": "booker-memento",
+  "version": "1.0.0",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
@@ -8,12 +8,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/alexbooker/password-reboot"
+    "url": "https://github.com/alexbooker/memento"
   },
   "author": "Alex Booker <alexbooker@fastmail.im>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/alexbooker/password-reboot/issues"
+    "url": "https://github.com/alexbooker/memento/issues"
   },
   "devDependencies": {
     "chai": "^3.0.0",
